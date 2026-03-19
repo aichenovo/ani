@@ -1,0 +1,46 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  build_self-hosted-macos-15:
+    name: Build on self-hosted macOS
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: |
+          echo "执行构建命令"
+          # 模拟失败可使用 exit 1 测试
+          # exit 1
+
+  verify_self-hosted-macos-15:
+    name: Verify on self-hosted macOS
+    runs-on: self-hosted
+    needs: build_self-hosted-macos-15
+    if: github.repository == 'open-ani/animeko'
+    continue-on-error: true   # 即使前面的 job 失败也继续执行
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Debug previous job result
+        run: |
+          echo "Previous job (build_self-hosted-macos-15) result: ${{ needs.build_self-hosted-macos-15.result }}"
+          echo "Workflow event name: ${{ github.event_name }}"
+
+      - name: Verify project
+        run: |
+          echo "开始验证项目"
+          if [ "${{ needs.build_self-hosted-macos-15.result }}" != "success" ]; then
+            echo "⚠️ Warning: Build job failed, but continuing verification"
+          fi
+          echo "执行验证脚本"
