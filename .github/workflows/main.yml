@@ -1,0 +1,124 @@
+name: Kotlin Multiplatform Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'   # 只有 push tag 才发布
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 33
+          build-tools: 33.0.2
+
+      - name: Build Kotlin JVM & Android
+        run: |
+          ./gradlew build
+          ./gradlew assembleRelease
+
+      - name: Upload Linux & Android Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-artifacts
+          path: |
+            build/libs/
+            build/outputs/apk/release/*.apk
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
+      - name: Build Kotlin JVM & iOS
+        run: |
+          ./gradlew build
+          ./gradlew iosX64Binaries  # Kotlin/Native iOS framework
+          ./gradlew assembleRelease # Android APK if needed
+
+      - name: Package iOS .ipa
+        run: |
+          xcodebuild -workspace iosApp/iosApp.xcworkspace \
+                     -scheme iosApp \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     -archivePath $PWD/build/iosApp.xcarchive archive
+          xcodebuild -exportArchive \
+                     -archivePath $PWD/build/iosApp.xcarchive \
+                     -exportOptionsPlist iosApp/ExportOptions.plist \
+                     -exportPath $PWD/build/ios
+
+      - name: Upload macOS & iOS Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-ios-artifacts
+          path: |
+            build/libs/
+            build/outputs/apk/release/*.apk
+            build/ios/*.ipa
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Kotlin JVM
+        run: gradlew.bat build
+
+      - name: Upload Windows Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-artifacts
+          path: build/libs/
+
+  release:
+    needs: [build-linux, build-macos, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts/
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: artifacts/**/*   # 上传所有平台的包
+          token: ${{ secrets.GITHUB_TOKEN }}
