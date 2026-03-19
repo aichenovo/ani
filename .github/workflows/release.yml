@@ -256,9 +256,7 @@ jobs:
   release_self-hosted-macos-15:
     name: 'macOS 15 AArch64 (Self-Hosted)'
     runs-on:
-    - 'self-hosted'
-    - 'macOS'
-    - 'ARM64'
+    - 'macos-latest'
     needs:
     - 'create-release'
     if: '${{ github.repository == ''open-ani/animeko'' }}'
