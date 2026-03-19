@@ -368,7 +368,7 @@ sealed class Runner(
         displayName = "macOS 15 AArch64 (Self-Hosted)",
         os = OS.MACOS,
         arch = Arch.AARCH64,
-        labels = setOf("self-hosted", "macOS", "ARM64"),
+        labels = setOf("macos-latest"),
     )
 
 //    companion object {
