@@ -3,7 +3,7 @@ name: Kotlin Multiplatform Build & Release
 on:
   push:
     tags:
-      - 'v*'   # 只有 push tag 才发布
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Upload Linux & Android Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-artifacts
           path: |
@@ -54,8 +54,8 @@ jobs:
       - name: Build Kotlin JVM & iOS
         run: |
           ./gradlew build
-          ./gradlew iosX64Binaries  # Kotlin/Native iOS framework
-          ./gradlew assembleRelease # Android APK if needed
+          ./gradlew iosX64Binaries
+          ./gradlew assembleRelease
 
       - name: Package iOS .ipa
         run: |
@@ -70,7 +70,7 @@ jobs:
                      -exportPath $PWD/build/ios
 
       - name: Upload macOS & iOS Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-ios-artifacts
           path: |
@@ -93,7 +93,7 @@ jobs:
         run: gradlew.bat build
 
       - name: Upload Windows Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-artifacts
           path: build/libs/
@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts/
 
@@ -120,5 +120,5 @@ jobs:
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
-          files: artifacts/**/*   # 上传所有平台的包
+          files: artifacts/**/*
           token: ${{ secrets.GITHUB_TOKEN }}
