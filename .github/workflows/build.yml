@@ -889,6 +889,8 @@ jobs:
     name: 'Build (macOS 15 AArch64 (Self-Hosted))'
     runs-on:
     - 'macos-latest'
+    - 'macOS'
+    - 'ARM64'
     permissions:
       actions: 'write'
     if: '${{ github.repository == ''open-ani/animeko'' }}'
@@ -1373,6 +1375,8 @@ jobs:
     name: 'Verify (macOS 15 AArch64 (Self-Hosted))'
     runs-on:
     - 'macos-latest'
+    - 'macOS'
+    - 'ARM64'
     permissions:
       actions: 'read'
     needs:
