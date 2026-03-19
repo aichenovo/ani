@@ -1372,7 +1372,7 @@ jobs:
   verify_self-hosted-macos-15:
     name: 'Verify (macOS 15 AArch64 (Self-Hosted))'
     runs-on:
-    - 'macos-15'
+    - 'macos-latest'
     permissions:
       actions: 'read'
     needs:
