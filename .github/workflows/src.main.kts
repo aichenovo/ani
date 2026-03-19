@@ -1962,7 +1962,7 @@ object Secrets {
 /// EXTENSIONS
 
 val GitHubContext.isAnimekoRepository
-    get() = """$repository == 'open-ani/animeko'"""
+    get() = """$repository == 'aichenovo/ani'"""
 
 val GitHubContext.isPullRequest
     get() = """$event_name == 'pull_request'"""
