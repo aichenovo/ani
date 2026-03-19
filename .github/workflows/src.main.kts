@@ -363,8 +363,8 @@ sealed class Runner(
         labels = setOf("self-hosted", "Windows", "X64"),
     )
 
-    object SelfHostedMacOS15 : GithubHosted(
-        id = "self-hosted-macos-15",
+    object GithubMacOS15AppleSilicon : GithubHosted(
+        id = "github-macos-15-apple",
         displayName = "macOS 15 AArch64 (Self-Hosted)",
         os = OS.MACOS,
         arch = Arch.AARCH64,
