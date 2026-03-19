@@ -355,7 +355,7 @@ sealed class Runner(
     )
 
     // Objects under SelfHosted
-    object SelfHostedWindows10 : SelfHosted(
+    object SelfHostedWindows10 : GithubHosted(
         id = "self-hosted-windows-10",
         displayName = "Windows 10 x86_64 (Self-Hosted)",
         os = OS.WINDOWS,
@@ -363,7 +363,7 @@ sealed class Runner(
         labels = setOf("self-hosted", "Windows", "X64"),
     )
 
-    object SelfHostedMacOS15 : SelfHosted(
+    object SelfHostedMacOS15 : GithubHosted(
         id = "self-hosted-macos-15",
         displayName = "macOS 15 AArch64 (Self-Hosted)",
         os = OS.MACOS,
