@@ -110,7 +110,7 @@ jobs:
         echo "ani.enable.firebase=true" >> local.properties
         echo "firebase.ga.app.id=${{ secrets.FIREBASE_GA_APP_ID }}" >> local.properties
         echo "firebase.ga.api.secret=${{ secrets.FIREBASE_GA_API_SECRET }}" >> local.properties
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-6'
       name: 'Get JBR (Windows)'
       env:
@@ -176,7 +176,7 @@ jobs:
         fileName: 'google-services.json'
         fileDir: './app/android'
         encodedString: '${{ secrets.GOOGLE_SERVICES_JSON }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-15'
       name: 'Compile Kotlin (Attempt #1)'
       continue-on-error: true
@@ -261,7 +261,7 @@ jobs:
     - 'ARM64'
     needs:
     - 'create-release'
-    if: '${{ github.repository == ''aichenovo/ani'' }}'
+    if: '${{ github.repository == ''open-ani/animeko'' }}'
     steps:
     - id: 'step-0'
       uses: 'actions/checkout@v4'
@@ -295,7 +295,7 @@ jobs:
         echo "ani.enable.firebase=true" >> local.properties
         echo "firebase.ga.app.id=${{ secrets.FIREBASE_GA_APP_ID }}" >> local.properties
         echo "firebase.ga.api.secret=${{ secrets.FIREBASE_GA_API_SECRET }}" >> local.properties
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-6'
       name: 'Update JVM args in gradle.properties'
       run: |-
@@ -443,7 +443,7 @@ jobs:
         fileName: 'google-services.json'
         fileDir: './app/android'
         encodedString: '${{ secrets.GOOGLE_SERVICES_JSON }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-20'
       name: 'Compile Kotlin (Attempt #1)'
       continue-on-error: true
@@ -729,7 +729,7 @@ jobs:
         echo "ani.enable.firebase=true" >> local.properties
         echo "firebase.ga.app.id=${{ secrets.FIREBASE_GA_APP_ID }}" >> local.properties
         echo "firebase.ga.api.secret=${{ secrets.FIREBASE_GA_API_SECRET }}" >> local.properties
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-7'
       name: 'Resolve JBR location'
       shell: 'bash'
@@ -863,7 +863,7 @@ jobs:
         fileName: 'google-services.json'
         fileDir: './app/android'
         encodedString: '${{ secrets.GOOGLE_SERVICES_JSON }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-19'
       name: 'Compile Kotlin (Attempt #1)'
       continue-on-error: true
@@ -971,7 +971,7 @@ jobs:
         echo "ani.enable.firebase=true" >> local.properties
         echo "firebase.ga.app.id=${{ secrets.FIREBASE_GA_APP_ID }}" >> local.properties
         echo "firebase.ga.api.secret=${{ secrets.FIREBASE_GA_API_SECRET }}" >> local.properties
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-7'
       name: 'Resolve JBR location'
       shell: 'bash'
@@ -1105,7 +1105,7 @@ jobs:
         fileName: 'google-services.json'
         fileDir: './app/android'
         encodedString: '${{ secrets.GOOGLE_SERVICES_JSON }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-19'
       name: 'Compile Kotlin (Attempt #1)'
       continue-on-error: true
@@ -1222,7 +1222,7 @@ jobs:
         echo "ani.enable.firebase=true" >> local.properties
         echo "firebase.ga.app.id=${{ secrets.FIREBASE_GA_APP_ID }}" >> local.properties
         echo "firebase.ga.api.secret=${{ secrets.FIREBASE_GA_API_SECRET }}" >> local.properties
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-8'
       name: 'Get JBR (Windows)'
       env:
@@ -1290,7 +1290,7 @@ jobs:
         fileName: 'android_signing_key'
         fileDir: './'
         encodedString: '${{ secrets.SIGNING_RELEASE_STOREFILE }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-18'
       name: 'Prepare google-services.json'
       continue-on-error: true
@@ -1299,7 +1299,7 @@ jobs:
         fileName: 'google-services.json'
         fileDir: './app/android'
         encodedString: '${{ secrets.GOOGLE_SERVICES_JSON }}'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-19'
       name: 'Compile Kotlin (Attempt #1)'
       continue-on-error: true
@@ -1447,7 +1447,7 @@ jobs:
       continue-on-error: true
       timeout-minutes: 180
       run: './gradlew assembleDefaultRelease "--scan" "-Porg.gradle.daemon.idletimeout=60000" "-Dfile.encoding=UTF-8" "-Dorg.gradle.jvmargs=-Xmx8g -Dkotlin.daemon.jvm.options=-Xmx6g" "-Dkotlin.daemon.jvm.options=-Xmx6g"'
-      if: '${{ (github.repository == ''aichenovo/ani'') && (!(github.event_name == ''pull_request'')) }}'
+      if: '${{ (github.repository == ''open-ani/animeko'') && (!(github.event_name == ''pull_request'')) }}'
     - id: 'step-38'
       name: 'Build Android Release APKs (Attempt #2)'
       env:
@@ -1614,7 +1614,7 @@ jobs:
       name: 'Generate QR code for APK (GitHub)'
       uses: 'snow-actions/qrcode@v1.0.0'
       with:
-        text: 'https://github.com/aichenovo/ani/releases/download/${{ steps.step-1.outputs.tag }}/ani-${{ steps.step-2.outputs.substring }}-universal.apk'
+        text: 'https://github.com/open-ani/animeko/releases/download/${{ steps.step-1.outputs.tag }}/ani-${{ steps.step-2.outputs.substring }}-universal.apk'
         path: 'apk-qrcode-github.png'
     - id: 'step-54'
       name: 'Generate QR code for APK (Cloudflare)'
@@ -1673,7 +1673,7 @@ jobs:
       name: 'Generate QR code for iOS (GitHub)'
       uses: 'snow-actions/qrcode@v1.0.0'
       with:
-        text: 'https://github.com/aichenovo/ani/releases/download/${{ steps.step-1.outputs.tag }}/ani-${{ steps.step-2.outputs.substring }}.ipa'
+        text: 'https://github.com/open-ani/animeko/releases/download/${{ steps.step-1.outputs.tag }}/ani-${{ steps.step-2.outputs.substring }}.ipa'
         path: 'ipa-qrcode-github.png'
     - id: 'step-58'
       name: 'Generate QR code for iOS (Cloudflare)'

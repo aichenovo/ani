@@ -1832,7 +1832,7 @@ class WithMatrix(
                     name = "Generate QR code for APK (GitHub)",
                     `if` = condition,
                     action = Qrcode_Untyped(
-                        text_Untyped = """https://github.com/aichenovo/ani/releases/download/${expr { gitTag.tagExpr }}/ani-${expr { gitTag.tagVersionExpr }}-universal.apk""",
+                        text_Untyped = """https://github.com/open-ani/animeko/releases/download/${expr { gitTag.tagExpr }}/ani-${expr { gitTag.tagVersionExpr }}-universal.apk""",
                         path_Untyped = "apk-qrcode-github.png",
                     ),
                 )
@@ -1854,7 +1854,7 @@ class WithMatrix(
                     name = "Generate QR code for iOS (GitHub)",
                     `if` = condition,
                     action = Qrcode_Untyped(
-                        text_Untyped = """https://github.com/aichenovo/ani/releases/download/${expr { gitTag.tagExpr }}/ani-${expr { gitTag.tagVersionExpr }}.ipa""",
+                        text_Untyped = """https://github.com/open-ani/animeko/releases/download/${expr { gitTag.tagExpr }}/ani-${expr { gitTag.tagVersionExpr }}.ipa""",
                         path_Untyped = "ipa-qrcode-github.png",
                     ),
                 )
@@ -1962,7 +1962,7 @@ object Secrets {
 /// EXTENSIONS
 
 val GitHubContext.isAnimekoRepository
-    get() = """$repository == 'aichenovo/ani'"""
+    get() = """$repository == 'open-ani/animeko'"""
 
 val GitHubContext.isPullRequest
     get() = """$event_name == 'pull_request'"""
